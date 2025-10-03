@@ -1,0 +1,41 @@
+# Node.js backend dependencies
+/node_modules/
+
+# Log files
+npm-debug.log
+yarn-error.log
+*.log
+
+# Environment variables (do not push sensitive information like API keys)
+.env
+.env.local
+.env.*.local
+
+# Build directories (for both frontend and backend)
+dist/
+build/
+out/
+
+# Frontend specific (React, Vue, Angular, etc.)
+/frontend/node_modules/       # Ignore frontend dependencies
+/frontend/build/              # Ignore build directory of frontend (if built via npm run build)
+/frontend/.env                # Ignore frontend-specific environment variables
+/frontend/public/             # Ignore any generated public files from the frontend
+
+# Backend specific (Node.js)
+/backend/node_modules/        # Ignore backend dependencies (same reason as frontend)
+/backend/.env                 # Ignore backend-specific environment variables
+/coverage/                    # Coverage reports if running tests (e.g., Jest)
+*.sqlite                      # Ignore any SQLite DB files (if used for local development)
+
+# IDE/editor specific files
+/.idea/
+/.vscode/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Temporary files (from editor, OS, or packages)
+*.tmp
+*.swp
