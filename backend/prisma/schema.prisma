@@ -1,0 +1,42 @@
+
+
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id   Int   @id @default(autoincrement())
+  name   String
+  address String
+  phone  String  @default("Not Provided")
+  email   String   @unique
+  password   String   //will store hashed password
+  role   String   @default("customer")
+  accounts Account[]  
+}
+
+model Account {
+  id   Int   @id @default(autoincrement())
+  accountNo   String   @unique
+  type   String   /* savings | current */
+  balance   Float   @default(0)
+  userId  Int /* Foriegn key pointing to User.id */
+  user   User   @relation(fields: [userId], references: [id])
+  transactions Transaction[]  
+}
+
+model Transaction {
+  id   Int   @id @default(autoincrement())
+  accountId   Int /* FK used to link transaction to account */
+  account   Account   @relation(fields: [accountId], references: [id])
+  type   String  //deposit|withdrawal|transfer
+  amount   Float  
+  timestamp   DateTime  @default(now())
+  toAccountNo String?  
+}
